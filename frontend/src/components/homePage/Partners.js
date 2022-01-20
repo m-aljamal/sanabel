@@ -1,9 +1,9 @@
-import React from "react"
-import styled from "styled-components"
-import { useStaticQuery, graphql } from "gatsby"
-import Background from "../Background"
-import Slider from "react-slick"
-import Img from "gatsby-image"
+import React from "react";
+import styled from "styled-components";
+import { useStaticQuery, graphql } from "gatsby";
+import Background from "../Background";
+import Slider from "react-slick";
+import Img from "gatsby-image";
 const Partners = () => {
   const { partners, icons } = useStaticQuery(graphql`
     {
@@ -17,17 +17,19 @@ const Partners = () => {
           }
         }
       }
-      icons: sanityPartners {
-        logo {
-          asset {
-            fluid(maxWidth: 2000) {
-              ...GatsbySanityImageFluid
+      icons: allSanityPartners {
+        nodes {
+          logo {
+            asset {
+              fluid(maxWidth: 2000) {
+                ...GatsbySanityImageFluid
+              }
             }
           }
         }
       }
     }
-  `)
+  `);
   const settings = {
     infinite: true,
     speed: 500,
@@ -47,13 +49,14 @@ const Partners = () => {
         },
       },
     ],
-  }
+  };
+  console.log({ partners, icons });
   return (
     <Background image={partners.image.asset.fluid}>
       <ParnersStyle className="pagePadding container">
         <div className="logo">
           <Slider {...settings}>
-            {icons.logo.map((icon, i) => (
+            {icons.nodes[0].logo.map((icon, i) => (
               <Img
                 fluid={icon.asset.fluid}
                 alt="icon"
@@ -65,7 +68,7 @@ const Partners = () => {
         </div>
         <div className="text textFit">
           <h2>شركاؤنا في العمل الإنساني</h2>
-          <p style={{marginTop:'20px'}} className="mt-4 w">
+          <p style={{ marginTop: "20px" }} className="mt-4 w">
             تســعى منظمــة ســنابل الأمــل لبنــاء علاقــات وشــراكات مــع
             المنظمــات الدوليــة والمحليــة للوصــول إلــى أكبــر قــدر ممكــن
             مــن الإســتفادة للمجتمع السوري
@@ -73,10 +76,10 @@ const Partners = () => {
         </div>
       </ParnersStyle>
     </Background>
-  )
-}
+  );
+};
 
-export default Partners
+export default Partners;
 const ParnersStyle = styled.section`
   display: flex;
   align-items: center;
@@ -118,4 +121,4 @@ const ParnersStyle = styled.section`
       width: 90%;
     }
   }
-`
+`;

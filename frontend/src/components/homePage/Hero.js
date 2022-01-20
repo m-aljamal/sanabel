@@ -1,15 +1,22 @@
-import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import Slider from "react-slick"
-import HeroBackground from "../HeroBackground"
+import React from "react";
+import { useStaticQuery, graphql } from "gatsby";
+import Slider from "react-slick";
+import HeroBackground from "../HeroBackground";
+import { useLang } from "../../context/lang-context";
 const Hero = () => {
   const { images } = useStaticQuery(graphql`
     {
       images: allSanityHomePageHero {
         nodes {
-          # name
+          name {
+            ar
+            en
+          }
           title
-          # body
+          body {
+            ar
+            en
+          }
           id
           image {
             asset {
@@ -21,7 +28,7 @@ const Hero = () => {
         }
       }
     }
-  `)
+  `);
   const settings = {
     dots: true,
     lazyLoad: true,
@@ -34,21 +41,21 @@ const Hero = () => {
     fade: true,
     autoplay: true,
     pauseOnHover: false,
-  }
-
+  };
+  const [lang] = useLang();
   return (
     <Slider {...settings}>
-      {images.nodes.map(image => (
+      {images.nodes.map((image) => (
         <HeroBackground
           key={image.id}
           image={image.image.asset.fluid}
-          title={image.name}
-          text={image.body}
+          title={image.name[lang]}
+          text={image.body[lang]}
           home
         />
       ))}
     </Slider>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;

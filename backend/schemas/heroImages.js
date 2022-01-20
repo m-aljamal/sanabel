@@ -22,15 +22,15 @@ export default {
       },
       validation: (Role) => Role.required().error("iamge is required"),
     },
-    // {
-    //   name: "name",
-    //   type: "langTitle",
-    //   title: "عنوان الصورة",
-    // },
-    // {
-    //   name: "body",
-    //   type: "langTitle",
-    //   title: "النص على الصورة",
-    // },
+    {
+      name: "name",
+      type: "langTitle",
+      title: "عنوان الصورة",
+    },
+    {
+      name: "body",
+      type: "langTitle",
+      title: "النص على الصورة",
+    },
   ],
 };

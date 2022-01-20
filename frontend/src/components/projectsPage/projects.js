@@ -1,24 +1,25 @@
-import React, { useState } from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import projectsName from "../../assets/icons/projects/sections.svg"
-import styled from "styled-components"
-import SearchProjects from "./SerchProjects"
-import Img from "gatsby-image"
-
-import donate from "../../assets/icons/projects/donate.svg"
-import { Link } from "gatsby"
+import React, { useState } from "react";
+import { useStaticQuery, graphql } from "gatsby";
+import projectsName from "../../assets/icons/projects/sections.svg";
+import styled from "styled-components";
+import SearchProjects from "./SerchProjects";
+import Img from "gatsby-image";
+import { useLang } from "../../context/lang-context";
+import donate from "../../assets/icons/projects/donate.svg";
+import { Link } from "gatsby";
 const Project = ({
-  project: { description, paid, target, title, project_image },
+  project: { description, paid, target, projectTitle, project_image },
 }) => {
-  const numberFormat = number => {
+  const [lang] = useLang();
+  const numberFormat = (number) => {
     return new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "USD",
     })
       .format(number)
-      .replace(/\D00$/, "")
-  }
-  const remain = target - paid
+      .replace(/\D00$/, "");
+  };
+  const remain = target - paid;
   return (
     <ProjectStyle>
       <div className="image">
@@ -30,8 +31,8 @@ const Project = ({
           </Link>
         </div> */}
       </div>
-      <h3>{title}</h3>
-      <p className="textFit mb-5 desc">{description}</p>
+      <h3>{projectTitle[lang]}</h3>
+      <p className="textFit mb-5 desc">{description[lang]}</p>
       <span
         className={`progressHolder ${target === paid ? "done" : undefined} `}
       >
@@ -60,20 +61,26 @@ const Project = ({
         </span>
       </span>
     </ProjectStyle>
-  )
-}
+  );
+};
 
 const Projects = () => {
   const { projects } = useStaticQuery(graphql`
     {
       projects: allSanityProjects {
         nodes {
-          description
+          description {
+            ar
+            en
+          }
           id
           paid
           projectType
           target
-          # title
+          projectTitle {
+            ar
+            en
+          }
           project_image {
             asset {
               fluid(maxWidth: 4000) {
@@ -84,17 +91,17 @@ const Projects = () => {
         }
       }
     }
-  `)
+  `);
 
-  const [projState, setProjects] = useState(projects.nodes)
-  const [projectPerPage, setProjectPerPage] = useState(3)
+  const [projState, setProjects] = useState(projects.nodes);
+  const [projectPerPage, setProjectPerPage] = useState(3);
 
   const setToAll = () => {
-    setProjects(projects.nodes)
-  }
+    setProjects(projects.nodes);
+  };
   const loadModeProjects = () => {
-    setProjectPerPage(projectPerPage + 3)
-  }
+    setProjectPerPage(projectPerPage + 3);
+  };
   return (
     <ProStyle className="pagePadding">
       <div className="name">
@@ -116,10 +123,10 @@ const Projects = () => {
         </p>
       )}
     </ProStyle>
-  )
-}
+  );
+};
 
-export default Projects
+export default Projects;
 
 const ProStyle = styled.section`
   .name {
@@ -156,7 +163,7 @@ const ProStyle = styled.section`
       flex-direction: column;
     }
   }
-`
+`;
 
 const ProjectStyle = styled.div`
   box-shadow: var(--shadow);
@@ -218,4 +225,4 @@ const ProjectStyle = styled.div`
   /* @media(max-width:400px){
     
   } */
-`
+`;

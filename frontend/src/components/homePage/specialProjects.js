@@ -1,19 +1,32 @@
-import React from "react"
-import styled from "styled-components"
-import specialProjects from "../../assets/icons/specialProjects/specialProjects.svg"
-import { useStaticQuery, graphql } from "gatsby"
-import ImgWithBorder from "../ImgWithBorder"
-import Slider from "react-slick"
+import React from "react";
+import styled from "styled-components";
+import specialProjects from "../../assets/icons/specialProjects/specialProjects.svg";
+import { useStaticQuery, graphql } from "gatsby";
+import ImgWithBorder from "../ImgWithBorder";
+import Slider from "react-slick";
+import { useLang } from "../../context/lang-context";
 const SpecialProjects = () => {
   const { special } = useStaticQuery(graphql`
     {
       special: allSanitySpecialProjects {
         nodes {
           id
-          location
-          # title
-          description
-          beneficiaries
+          location {
+            ar
+            en
+          }
+          projectTitle {
+            ar
+            en
+          }
+          description {
+            ar
+            en
+          }
+          beneficiaries {
+            ar
+            en
+          }
           project_image {
             asset {
               fluid(maxWidth: 2000) {
@@ -24,7 +37,7 @@ const SpecialProjects = () => {
         }
       }
     }
-  `)
+  `);
   const settings = {
     dots: true,
     lazyLoad: true,
@@ -34,7 +47,8 @@ const SpecialProjects = () => {
     slidesToScroll: 1,
     arrows: false,
     fade: true,
-  }
+  };
+  const [lang] = useLang();
   return (
     <div className="bg-AppDark  ">
       <div className="container py-10">
@@ -45,22 +59,22 @@ const SpecialProjects = () => {
         />
 
         <Slider {...settings}>
-          {special.nodes.map(proj => (
+          {special.nodes.map((proj) => (
             <Project
               image={proj.project_image.asset.fluid}
-              title={proj.title}
-              description={proj.description}
-              beneficiaries={proj.beneficiaries}
-              location={proj.location}
+              title={proj.projectTitle[lang]}
+              description={proj.description[lang]}
+              beneficiaries={proj.beneficiaries[lang]}
+              location={proj.location[lang]}
             />
           ))}
         </Slider>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SpecialProjects
+export default SpecialProjects;
 
 const Project = ({ image, title, description, beneficiaries, location }) => {
   return (
@@ -75,5 +89,5 @@ const Project = ({ image, title, description, beneficiaries, location }) => {
         <p className=" text-AppGreen ">{location}</p>
       </div>
     </div>
-  )
-}
+  );
+};

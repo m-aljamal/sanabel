@@ -1,18 +1,25 @@
-import React from "react"
-import styled from "styled-components"
-import { useStaticQuery, graphql } from "gatsby"
-import Slider from "react-slick"
-import ImgWithBorder from "../ImgWithBorder"
-import latestNewsTitel from "../../assets/icons/latestNews.svg"
+import React from "react";
+import styled from "styled-components";
+import { useStaticQuery, graphql } from "gatsby";
+import Slider from "react-slick";
+import ImgWithBorder from "../ImgWithBorder";
+import latestNewsTitel from "../../assets/icons/latestNews.svg";
+import { useLang } from "../../context/lang-context";
 const News = () => {
   const { news } = useStaticQuery(graphql`
     {
       news: allSanityNews {
         nodes {
           id
-          description
+          description {
+            ar
+            en
+          }
           date(formatString: "DD/MM/YYYY")
-          # title
+          newsTitle {
+            ar
+            en
+          }
           news_image {
             asset {
               fluid(maxWidth: 2000) {
@@ -23,7 +30,7 @@ const News = () => {
         }
       }
     }
-  `)
+  `);
   const settings = {
     dots: true,
     infinite: true,
@@ -44,7 +51,8 @@ const News = () => {
         },
       },
     ],
-  }
+  };
+  const [lang] = useLang();
   return (
     <NewsStyle className="pagePadding">
       <div className="logo">
@@ -52,11 +60,11 @@ const News = () => {
       </div>
       <div className="container mt-5 ">
         <Slider {...settings}>
-          {news.nodes.map(news => (
+          {news.nodes.map((news) => (
             <div className="newsHolder " key={news.id}>
               <div className="text">
-                <h3 className="title">{news.title}</h3>
-                <p className="textFit mt-4 desc">{news.description}</p>
+                <h3 className="title">{news.newsTitle[lang]}</h3>
+                <p className="textFit mt-4 desc">{news.description[lang]}</p>
                 <p className="date">{news.date}</p>
               </div>
               <div className="image">
@@ -67,10 +75,10 @@ const News = () => {
         </Slider>
       </div>
     </NewsStyle>
-  )
-}
+  );
+};
 
-export default News
+export default News;
 const NewsStyle = styled.section`
   background: var(--liteBack);
 
@@ -151,4 +159,4 @@ const NewsStyle = styled.section`
       width: 85%;
     }
   }
-`
+`;
