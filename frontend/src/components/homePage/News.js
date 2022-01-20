@@ -43,7 +43,7 @@ const News = () => {
     autoplaySpeed: 5000,
     responsive: [
       {
-        breakpoint: 768,
+        breakpoint: 1024,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -56,7 +56,7 @@ const News = () => {
   return (
     <div className="bg-AppLiteBack">
       <div className="container py-8">
-        <div className="w-[200px] mx-auto pt-2">
+        <div className="w-[200px]  mx-auto pt-2">
           <img src={latestNewsTitel} alt="latest news" />
         </div>
         <div className="">
@@ -75,89 +75,26 @@ const SingleNews = ({ news }) => {
   const [lang] = useLang();
   return (
     <div className="  mt-20 ">
-      <div className="w-1/2 relative ml-5">
-        <ImgWithBorder img={news.news_image.asset.fluid} />
+      <div className=" lg:w-[80%]  relative ml-5">
+        <ImgWithBorder
+          img={news.news_image.asset.fluid}
+          imageStyle="lg:h-[250px] h-[300px]   "
+          borderStyle=""
+        />
       </div>
-      <div className=" w-1/2 mt-4 ">
-        <h3 className="title">{news.newsTitle[lang]}</h3>
-        <p className="textFit mt-4 desc">{news.description[lang]}</p>
-        <p className="date">{news.date}</p>
+      <div
+        className={`mt-4 ${
+          lang === "en" ? "text-left" : "text-right"
+        }  lg:w-[80%] text-gray-800`}
+      >
+        <h3 className="text-2xl text-center font-bold ">
+          {news.newsTitle[lang]}
+        </h3>
+        <p className="  mt-4 ">{news.description[lang]}</p>
+        <p className="text-AppGreen font-semibold">{news.date}</p>
       </div>
     </div>
   );
 };
 
 export default News;
-const NewsStyle = styled.section`
-   
-   
-  .text {
-    text-align: end;
-    width: 50%;
-    margin-left: 3rem;
-  }
-
-  .image {
-    width: 50%;
-    position: relative;
-    margin-left: 3rem;
-  }
-  .title {
-    font-size: 2.5rem;
-    font-weight: 700;
-  }
-  .desc {
-    height: 30rem;
-    overflow: hidden;
-  }
-  .date {
-    color: var(--green);
-  }
-  .slick-dots {
-    display: block !important;
-    bottom: -40px;
-  }
-  li button:before {
-    color: black;
-  }
-  .logo {
-    width: 100%;
-    text-align: center;
-    .newsTitle {
-      width: 18rem;
-    }
-  }
-  @media (max-width: 991px) {
-    .desc {
-      height: 16rem;
-      font-size: 1.5rem;
-    }
-    .date {
-      font-size: 1.5rem;
-    }
-    .title {
-      font-size: 2rem;
-    }
-  }
-  @media (max-width: 380px) {
-    .image {
-      width: 60% !important;
-      margin: 0 auto;
-    }
-  }
-  @media (max-width: 380px) {
-    .newsHolder {
-      flex-direction: column-reverse;
-    }
-    .desc {
-      height: auto;
-    }
-    .text {
-      width: 85%;
-      margin-top: 2rem;
-    }
-    .image {
-      width: 85%;
-    }
-  }
-`;

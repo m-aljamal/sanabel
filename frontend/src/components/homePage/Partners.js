@@ -52,8 +52,18 @@ const Partners = () => {
   };
   return (
     <Background image={partners.image.asset.fluid}>
-      <ParnersStyle className="pagePadding container">
-        <div className="logo">
+      <div className="lg:flex items-center container mx-auto ">
+        <div className="py-8">
+          <h2 className="text-AppGreen font-bold text-2xl">
+            شركاؤنا في العمل الإنساني
+          </h2>
+          <p className="mt-4 text-white text-xl  ">
+            تســعى منظمــة ســنابل الأمــل لبنــاء علاقــات وشــراكات مــع
+            المنظمــات الدوليــة والمحليــة للوصــول إلــى أكبــر قــدر ممكــن
+            مــن الإســتفادة للمجتمع السوري
+          </p>
+        </div>
+        <div className="lg:w-[60%]">
           <Slider {...settings}>
             {icons.nodes[0].logo.map((icon, i) => (
               <Img
@@ -65,59 +75,9 @@ const Partners = () => {
             ))}
           </Slider>
         </div>
-        <div className="text textFit">
-          <h2>شركاؤنا في العمل الإنساني</h2>
-          <p style={{ marginTop: "20px" }} className="mt-4 w">
-            تســعى منظمــة ســنابل الأمــل لبنــاء علاقــات وشــراكات مــع
-            المنظمــات الدوليــة والمحليــة للوصــول إلــى أكبــر قــدر ممكــن
-            مــن الإســتفادة للمجتمع السوري
-          </p>
-        </div>
-      </ParnersStyle>
+      </div>
     </Background>
   );
 };
 
 export default Partners;
-const ParnersStyle = styled.section`
-  display: flex;
-  align-items: center;
-  max-width: 80%;
-  margin: 0 auto;
-
-  .text {
-    width: 40%;
-    margin-left: 5%;
-  }
-  .logo {
-    width: 55%;
-  }
-  h2 {
-    color: var(--green);
-    font-size: 3rem;
-    font-weight: bold;
-    padding-bottom: 1rem;
-
-    border-bottom: 2px solid var(--green);
-    display: inline-block;
-  }
-  @media (max-width: 991px) {
-    h2 {
-      font-size: 2rem;
-    }
-    p {
-      font-size: 1.5rem;
-    }
-  }
-  @media (max-width: 768px) {
-    flex-direction: column-reverse;
-    .text {
-      width: 90%;
-      margin-left: 0;
-    }
-    .logo {
-      margin-top: 2rem;
-      width: 90%;
-    }
-  }
-`;
