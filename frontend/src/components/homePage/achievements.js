@@ -43,7 +43,6 @@ const Achievements = () => {
     project,
   };
   const [lang] = useLang();
-
   return (
     <Background image={banner.image.asset.fluid}>
       <div className=" container">
@@ -52,9 +51,9 @@ const Achievements = () => {
           alt="right"
           className=" absolute right-0 w-20"
         />
-        <div className="   grid md:grid-cols-4 sm:grid-cols-2  grid-cols-1  text-center p-10">
+        <div className="grid md:grid-cols-4 sm:grid-cols-2  grid-cols-1   text-center p-10">
           {achiev.nodes.map((ach) => (
-            <div key={ach.id} className="place-self-center">
+            <div key={ach.id} className="place-self-center py-6 md:py-0">
               <img src={images[ach.title]} className="w-24  " />
               <CountUp
                 className="text-3xl font-bold"

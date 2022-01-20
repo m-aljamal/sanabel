@@ -1,9 +1,9 @@
-import React from "react"
-import Achievements from "./achievements"
-import Hero from "./Hero"
-import SpecialProjects from "./specialProjects"
-import News from "./News"
-import Partners from "./Partners"
+import React from "react";
+import Achievements from "./achievements";
+import Hero from "./Hero";
+import SpecialProjects from "./specialProjects";
+import News from "./News";
+import Partners from "./Partners";
 const Index = () => {
   return (
     <div>
@@ -13,7 +13,7 @@ const Index = () => {
       <News />
       <Partners />
     </div>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;

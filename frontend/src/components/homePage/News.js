@@ -32,7 +32,7 @@ const News = () => {
     }
   `);
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 1500,
     slidesToShow: 2,
@@ -52,44 +52,45 @@ const News = () => {
       },
     ],
   };
+
+  return (
+    <div className="bg-AppLiteBack">
+      <div className="container py-8">
+        <div className="w-[200px] mx-auto pt-2">
+          <img src={latestNewsTitel} alt="latest news" />
+        </div>
+        <div className="">
+          <Slider {...settings}>
+            {news.nodes.map((news) => (
+              <SingleNews news={news} key={news.id} />
+            ))}
+          </Slider>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const SingleNews = ({ news }) => {
   const [lang] = useLang();
   return (
-    <NewsStyle className="pagePadding">
-      <div className="logo">
-        <img src={latestNewsTitel} alt="latest news" className="newsTitle" />
+    <div className="  mt-20 ">
+      <div className="w-1/2 relative ml-5">
+        <ImgWithBorder img={news.news_image.asset.fluid} />
       </div>
-      <div className="container mt-5 ">
-        <Slider {...settings}>
-          {news.nodes.map((news) => (
-            <div className="newsHolder " key={news.id}>
-              <div className="text">
-                <h3 className="title">{news.newsTitle[lang]}</h3>
-                <p className="textFit mt-4 desc">{news.description[lang]}</p>
-                <p className="date">{news.date}</p>
-              </div>
-              <div className="image">
-                <ImgWithBorder img={news.news_image.asset.fluid} />
-              </div>
-            </div>
-          ))}
-        </Slider>
+      <div className=" w-1/2 mt-4 ">
+        <h3 className="title">{news.newsTitle[lang]}</h3>
+        <p className="textFit mt-4 desc">{news.description[lang]}</p>
+        <p className="date">{news.date}</p>
       </div>
-    </NewsStyle>
+    </div>
   );
 };
 
 export default News;
 const NewsStyle = styled.section`
-  background: var(--liteBack);
-
-  .container {
-    max-width: 70%;
-    margin: 0 auto;
-  }
-  .newsHolder {
-    display: flex !important;
-    margin-top: 16px;
-  }
+   
+   
   .text {
     text-align: end;
     width: 50%;

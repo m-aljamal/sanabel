@@ -55,12 +55,12 @@ const SpecialProjects = () => {
         <img
           src={specialProjects}
           alt="specialProjects"
-          className="w-1/4  my-3"
+          className="w-[200px]  my-3"
         />
-
         <Slider {...settings}>
           {special.nodes.map((proj) => (
             <Project
+              key={proj.id}
               image={proj.project_image.asset.fluid}
               title={proj.projectTitle[lang]}
               description={proj.description[lang]}
@@ -78,15 +78,15 @@ export default SpecialProjects;
 
 const Project = ({ image, title, description, beneficiaries, location }) => {
   return (
-    <div className=" flex gap-5">
-      <div className=" w-1/2  pl-5 ">
-        <ImgWithBorder img={image} color="true" />
-      </div>
-      <div className="w-1/2 text-right">
-        <h2 className=" text-AppGreen font-bold text-xl ">{title}</h2>
-        <p className=" text-white text-lg      ">{description}</p>
+    <div className=" lg:flex gap-5 items-center">
+      <div className="lg:w-1/2 mt-8 lg:mt-0 text-right">
+        <h2 className=" text-AppGreen font-bold text-2xl  ">{title}</h2>
+        <p className=" text-white text-xl ">{description}</p>
         <p className=" mt-3 text-AppGreen ">{beneficiaries}</p>
         <p className=" text-AppGreen ">{location}</p>
+      </div>
+      <div className=" lg:w-1/2 pl-5 w-[80%] mx-auto mt-5 ">
+        <ImgWithBorder img={image} color="true" />
       </div>
     </div>
   );

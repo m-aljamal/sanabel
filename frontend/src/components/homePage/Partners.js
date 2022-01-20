@@ -50,7 +50,6 @@ const Partners = () => {
       },
     ],
   };
-  console.log({ partners, icons });
   return (
     <Background image={partners.image.asset.fluid}>
       <ParnersStyle className="pagePadding container">
