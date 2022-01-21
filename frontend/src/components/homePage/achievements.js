@@ -1,14 +1,12 @@
 import React from "react";
 import Background from "../Background";
 import { useStaticQuery, graphql } from "gatsby";
-import beneficiaries from "../../assets/icons/achievements/beneficiaries.svg";
-import course from "../../assets/icons/achievements/course.svg";
-import orphan from "../../assets/icons/achievements/orphan.svg";
-import project from "../../assets/icons/achievements/project.svg";
+
 import CountUp from "react-countup";
 import banner_left from "../../assets/icons/achievements/banner_left.webp";
 import banner_right from "../../assets/icons/achievements/banner_right.webp";
 import { useLang } from "../../context/lang-context";
+import Img from "gatsby-image";
 const Achievements = () => {
   const { achiev, banner } = useStaticQuery(graphql`
     {
@@ -18,6 +16,13 @@ const Achievements = () => {
           achievements {
             ar
             en
+          }
+          image {
+            asset {
+              fluid {
+                ...GatsbySanityImageFluid
+              }
+            }
           }
           number
         }
@@ -36,13 +41,8 @@ const Achievements = () => {
     }
   `);
 
-  const images = {
-    beneficiaries,
-    course,
-    orphan,
-    project,
-  };
   const [lang] = useLang();
+  console.log(achiev);
   return (
     <Background image={banner.image.asset.fluid}>
       <div className=" container">
@@ -54,7 +54,7 @@ const Achievements = () => {
         <div className="grid md:grid-cols-4 sm:grid-cols-2  grid-cols-1   text-center p-10">
           {achiev.nodes.map((ach) => (
             <div key={ach.id} className="place-self-center py-6 md:py-0">
-              <img src={images[ach.title]} className="w-24  " />
+              <Img fluid={ach.image.asset.fluid} className="w-24" />
               <CountUp
                 className="text-3xl font-bold"
                 separator=" "

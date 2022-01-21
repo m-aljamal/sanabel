@@ -4,7 +4,10 @@ import { useStaticQuery, graphql } from "gatsby";
 import Background from "../Background";
 import Slider from "react-slick";
 import Img from "gatsby-image";
+import { text } from "../../data/text";
+import { useLang } from "../../context/lang-context";
 const Partners = () => {
+  const [lang] = useLang();
   const { partners, icons } = useStaticQuery(graphql`
     {
       partners: sanityBanners(title: { eq: "partners" }) {
@@ -54,14 +57,10 @@ const Partners = () => {
     <Background image={partners.image.asset.fluid}>
       <div className="lg:flex items-center container mx-auto ">
         <div className="py-8">
-          <h2 className="text-AppGreen font-bold text-2xl">
-            شركاؤنا في العمل الإنساني
+          <h2 className="text-AppDark font-bold text-2xl">
+            {text[lang].partners}
           </h2>
-          <p className="mt-4 text-white text-xl  ">
-            تســعى منظمــة ســنابل الأمــل لبنــاء علاقــات وشــراكات مــع
-            المنظمــات الدوليــة والمحليــة للوصــول إلــى أكبــر قــدر ممكــن
-            مــن الإســتفادة للمجتمع السوري
-          </p>
+          <p className="mt-4 text-white text-xl  ">{text[lang].partnersText}</p>
         </div>
         <div className="lg:w-[60%]">
           <Slider {...settings}>

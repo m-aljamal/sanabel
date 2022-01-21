@@ -1,10 +1,10 @@
-import React from "react"
-import styled from "styled-components"
-import name from "../../assets/icons/about/sanabelAmal.svg"
-import { useStaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
-import establishIcon from "../../assets/icons/about/establishIcon.svg"
-import vision from "../../assets/icons/about/vision.svg"
+import React from "react";
+import styled from "styled-components";
+import name from "../../assets/icons/about/sanabelAmal.svg";
+import { useStaticQuery, graphql } from "gatsby";
+import Img from "gatsby-image";
+import establishIcon from "../../assets/icons/about/establishIcon.svg";
+import vision from "../../assets/icons/about/vision.svg";
 
 const InfoHolder = ({
   img,
@@ -16,7 +16,7 @@ const InfoHolder = ({
   icon,
 }) => {
   return (
-    <div className={`infoContainer mt-5 ${className}`}>
+    <div className={`infoContainer   ${className}`}>
       <div className="imageContainer">
         <div className={`image ${imageSecStyle}`}>
           <Img fluid={img} alt="establishing" />
@@ -28,8 +28,8 @@ const InfoHolder = ({
         <p className="w mt-3 pb-5  ">{body}</p>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const Info = () => {
   const { estImg, visionImg } = useStaticQuery(graphql`
@@ -53,7 +53,8 @@ const Info = () => {
         }
       }
     }
-  `)
+  `);
+
   const words = {
     ar: {
       esta: {
@@ -75,35 +76,32 @@ const Info = () => {
           `,
       },
     },
-  }
-
+  };
   return (
-    <InfoStyle>
-      <div className="name pt-5 pb-5">
-        <img src={name} alt="sanabel name" />
+    <div className="bg-AppDark">
+      <div className="container py-10">
+        <InfoHolder
+          img={estImg.image.asset.fluid}
+          title={words["ar"].esta.title}
+          body={words["ar"].esta.body}
+          icon={establishIcon}
+        />
+        <div className="pt-5"></div>
+        <InfoHolder
+          img={visionImg.image.asset.fluid}
+          title={words["ar"].vision.title}
+          body={words["ar"].vision.body}
+          className="secoundStyle"
+          textSecStyle="textSecStyle"
+          imageSecStyle="imageSecStyle"
+          icon={vision}
+        />
       </div>
+    </div>
+  );
+};
 
-      <InfoHolder
-        img={estImg.image.asset.fluid}
-        title={words["ar"].esta.title}
-        body={words["ar"].esta.body}
-        icon={establishIcon}
-      />
-      <div className="pt-5"></div>
-      <InfoHolder
-        img={visionImg.image.asset.fluid}
-        title={words["ar"].vision.title}
-        body={words["ar"].vision.body}
-        className="secoundStyle"
-        textSecStyle="textSecStyle"
-        imageSecStyle="imageSecStyle"
-        icon={vision}
-      />
-    </InfoStyle>
-  )
-}
-
-export default Info
+export default Info;
 const InfoStyle = styled.section`
   padding-bottom: 6rem;
   background: var(--dark);
@@ -159,7 +157,6 @@ const InfoStyle = styled.section`
   .infoContainer {
     display: flex;
     align-items: center;
-    
   }
   .secoundStyle {
     flex-direction: row-reverse;
@@ -221,4 +218,4 @@ const InfoStyle = styled.section`
       width: 20rem;
     }
   }
-`
+`;

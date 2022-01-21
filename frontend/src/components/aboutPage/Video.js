@@ -1,20 +1,24 @@
-import React from "react"
-import styled from "styled-components"
-import videoPoster from "../../assets/icons/about/videoPoster.webp"
-import work from "../../assets/icons/about/work.svg"
-import buildBatterFuture from "../../assets/icons/about/buildBatterFuture.svg"
-import togatherToSucceed from "../../assets/icons/about/togatherToSucceed.svg"
+import React from "react";
+import videoPoster from "../../assets/icons/about/videoPoster.webp";
+import { text } from "../../data/text";
+import { useLang } from "../../context/lang-context";
+import AppTitle from "../../components/AppTitle";
 const Video = () => {
+  const [lang] = useLang();
   return (
-    <VideoStyle className="pagePadding">
-      <div className="container">
-        <div className="text  ">
-          <img src={work} alt="work" />
-          <img src={togatherToSucceed} alt="togatherToSucceed" />
-          <img src={buildBatterFuture} alt="buildBatterFuture" />
+    <div className="bg-AppLiteBack">
+      <div className="container md:flex py-8 items-center justify-center gap-32   ">
+        <div className="   space-y-12 text-3xl ">
+          <AppTitle>{text[lang].about.videoTitle}</AppTitle>
+          <AppTitle style>{text[lang].about.videoText}</AppTitle>
+          <AppTitle>{text[lang].about.videoText2}</AppTitle>
         </div>
-        <div className="videoBorder">
-          <div className="videoHolder ">
+        <div className=" relative md:w-1/2 mt-10 md:mt-0">
+          <div
+            className="before:content-[''] before:absolute before:w-full before:h-full before:-left-[15px] before:rounded-3xl before:border-4 
+      before:z-30 
+      before:border-AppDark "
+          >
             <video controls poster={videoPoster} className="video radiusAll ">
               <source
                 src="https://res.cloudinary.com/mohammadjamal/video/upload/v1601957264/eeq38kyvhazwvcq6c3g7.mp4"
@@ -24,59 +28,8 @@ const Video = () => {
           </div>
         </div>
       </div>
-    </VideoStyle>
-  )
-}
+    </div>
+  );
+};
 
-export default Video
-const VideoStyle = styled.section`
-  background: var(--liteBack);
-  .container {
-    max-width: 80%;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: 5rem;
-  }
-  img {
-    display: block;
-    margin-left: auto;
-  }
-  img:nth-child(1) {
-    width: 26%;
-  }
-  img:nth-child(2) {
-    width: 50%;
-    padding-top: 3rem;
-    padding-bottom: 2rem;
-  }
-  img:nth-child(3) {
-    width: 75%;
-  }
-  .videoBorder {
-    position: relative;
-  }
-  .videoHolder {
-    &::before {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      left: -15px;
-      border-radius: 25px;
-      border: 3px solid var(--dark);
-      top: -15px;
-    }
-  }
-  .video {
-    width: 100%;
-    object-fit: cover;
-    outline: none;
-  }
-  @media (max-width: 768px) {
-    .container {
-      grid-template-columns: 1fr;
-    }
-  }
-`
+export default Video;

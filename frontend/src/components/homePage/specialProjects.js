@@ -1,10 +1,10 @@
 import React from "react";
-import styled from "styled-components";
-import specialProjects from "../../assets/icons/specialProjects/specialProjects.svg";
 import { useStaticQuery, graphql } from "gatsby";
 import ImgWithBorder from "../ImgWithBorder";
 import Slider from "react-slick";
 import { useLang } from "../../context/lang-context";
+import { text } from "../../data/text";
+import AppTitle from "../AppTitle";
 const SpecialProjects = () => {
   const { special } = useStaticQuery(graphql`
     {
@@ -52,11 +52,10 @@ const SpecialProjects = () => {
   return (
     <div className="bg-AppDark  ">
       <div className="container py-10">
-        <img
-          src={specialProjects}
-          alt="specialProjects"
-          className="w-[200px]  my-3"
-        />
+        <div className="mb-8">
+          <AppTitle>{text[lang].project}</AppTitle>
+        </div>
+
         <Slider {...settings}>
           {special.nodes.map((proj) => (
             <Project

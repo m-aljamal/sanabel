@@ -3,8 +3,9 @@ import styled from "styled-components";
 import { useStaticQuery, graphql } from "gatsby";
 import Slider from "react-slick";
 import ImgWithBorder from "../ImgWithBorder";
-import latestNewsTitel from "../../assets/icons/latestNews.svg";
 import { useLang } from "../../context/lang-context";
+import AppTitle from "../AppTitle";
+import { text } from "../../data/text";
 const News = () => {
   const { news } = useStaticQuery(graphql`
     {
@@ -52,12 +53,13 @@ const News = () => {
       },
     ],
   };
+  const [lang] = useLang();
 
   return (
     <div className="bg-AppLiteBack">
       <div className="container py-8">
-        <div className="w-[200px]  mx-auto pt-2">
-          <img src={latestNewsTitel} alt="latest news" />
+        <div className=" flex justify-center ">
+          <AppTitle style>{text[lang].news}</AppTitle>
         </div>
         <div className="">
           <Slider {...settings}>

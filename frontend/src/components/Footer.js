@@ -36,7 +36,7 @@ const Footer = () => {
         <div className=" md:flex       text-center md:justify-around py-16 ">
           <div className=" text-white">
             <h3 className=" font-bold border-b-2 border-AppGreen w-fit  mx-auto">
-              {footerText[lang].contact}
+              {footerText[lang].call}
             </h3>
 
             <div className="mt-5">
@@ -63,12 +63,12 @@ const Footer = () => {
           </div>
           <div className="w-60 mx-auto">
             <Img fluid={logo.image.asset.fluid} alt="" />
-            <p className=" text-AppGreen mt-8">&copy; جميع الحقوق محفوظة </p>
+            <p className=" text-AppGreen mt-8">&copy; {footerText[lang].allRight} </p>
           </div>
 
           <div className="text-white   ">
             <h4 className="font-bold border-b-2 border-AppGreen w-fit  mx-auto mt-8 md:mt-0">
-              للتواصل
+              {footerText[lang].contact}
             </h4>
 
             <p className="mt-4">{footerText[lang].socialText}</p>

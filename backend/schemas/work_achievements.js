@@ -11,6 +11,17 @@ export default {
       type: "langTitle",
       title: "المستفيدين",
     },
+
+    {
+      name: "image",
+      type: "image",
+      title: "صورة",
+      options: {
+        hotspot: true,
+      },
+      validation: (Role) => Role.required().error("iamge is required"),
+    },
+
     {
       name: "number",
       type: "number",
