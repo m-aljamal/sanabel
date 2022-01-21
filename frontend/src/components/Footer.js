@@ -1,7 +1,6 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import Background from "../components/Background";
-import styled from "styled-components";
 import Img from "gatsby-image";
 import { social } from "../data/links";
 import { footerText } from "../data/text";
@@ -75,7 +74,11 @@ const Footer = () => {
             <p className="mt-4">{footerText[lang].socialText}</p>
             <div className="flex mt-4 justify-center gap-3 ">
               {social.map((item) => (
-                <SocialLinks link={item.link} imgSrc={item.footer} />
+                <SocialLinks
+                  key={item.link}
+                  link={item.link}
+                  imgSrc={item.footer}
+                />
               ))}
             </div>
           </div>

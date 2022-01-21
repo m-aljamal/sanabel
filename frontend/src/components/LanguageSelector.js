@@ -1,24 +1,24 @@
-import React, { useEffect } from "react"
-import { navigate } from "gatsby"
-import { useLang } from "../context/lang-context"
+import React, { useEffect } from "react";
+import { navigate } from "gatsby";
+import { useLang } from "../context/lang-context";
 const LanguageSelector = ({ location }) => {
-  const [lang, setLang] = useLang()
+  const [lang, setLang] = useLang();
 
   useEffect(() => {
     if (location.pathname.includes("/en/")) {
-      setLang("en")
+      setLang("en");
     } else {
-      setLang("ar")
+      setLang("ar");
     }
-  }, [location])
+  }, [location, setLang]);
 
   const setArabic = () => {
-    navigate(location.pathname.replace("/" + lang + "/", "/"))
-  }
+    navigate(location.pathname.replace("/" + lang + "/", "/"));
+  };
 
   const setEnglish = () => {
-    navigate(`/en${location.pathname}`)
-  }
+    navigate(`/en${location.pathname}`);
+  };
 
   const languges = [
     {
@@ -32,7 +32,7 @@ const LanguageSelector = ({ location }) => {
       change: setArabic,
       id: 2,
     },
-  ]
+  ];
 
   return (
     <div>
@@ -41,15 +41,15 @@ const LanguageSelector = ({ location }) => {
         name={lang === "ar" ? languges[0].name : languges[1].name}
       />
     </div>
-  )
-}
+  );
+};
 
-export default LanguageSelector
+export default LanguageSelector;
 
 const SelectLang = ({ change, name }) => {
   return (
     <p onClick={change} style={{ cursor: "pointer", color: "white" }}>
       {name}
     </p>
-  )
-}
+  );
+};
