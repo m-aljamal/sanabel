@@ -34,6 +34,19 @@ export const text = {
       videoTitle: "العمل",
       videoText: "معاَ نحو النجاح",
       videoText2: "لبناء مستقبل أفضل",
+      foundingTitle: "تأسيسنا",
+      foundingBody: `تأسست عام 2016 باسم مؤسسة الشام
+      التعليميـــة وعملـــت فـــي الداخل الســـوري،
+      حتـــى عـــام 2019 حيـــث تـــم  ترخيـــص مكتب  
+      başaklar Umut للمنظمة في تركيا باسم `,
+      visionTitle: "رؤيتنا المستقبلية:",
+      visionBody: `
+      نهـــدف إلى تأمين ســـبل العيش الكريمة
+للمحتاجين فـــي المجتمع، وبناء جيل واع،
+ونشـــر الثقافـــة والتنميـــة بيـــن الأفـــراد؛
+لتحقيـــق أكبـــر نجـــاح والوصول إلـــى الإبداع
+والرقـــي في كافـــة مجالات الحيـــاة ( ثقافياً, طبياً, تنموياً, إغاثياً)
+      `,
     },
   },
   en: {
@@ -47,6 +60,13 @@ export const text = {
       videoTitle: "Work",
       videoText: "With the success",
       videoText2: "To build the best future",
+      foundingTitle: "Founding",
+      foundingBody: `Founded in 2016 as Al-Sham Foundation education and worked inside Syria, Until 2019, when an office was licensed başaklar Umut of the organization in Turkey as `,
+      visionTitle: "Our vision:",
+      visionBody: `We aim to secure a decent livelihood
+for the needy in society, and to build a conscious generation,
+spreading culture and development among individuals;
+To achieve greater success and access to creativity and advancement in all areas of life (culturally, medically, developmentally, relief)`,
     },
   },
 };

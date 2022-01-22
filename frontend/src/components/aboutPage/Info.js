@@ -5,7 +5,9 @@ import { useStaticQuery, graphql } from "gatsby";
 import Img from "gatsby-image";
 import establishIcon from "../../assets/icons/about/establishIcon.svg";
 import vision from "../../assets/icons/about/vision.svg";
-
+import { useLang } from "../../context/lang-context";
+import { text } from "../../data/text";
+import AppTitle from "../AppTitle";
 const InfoHolder = ({
   img,
   title,
@@ -16,16 +18,16 @@ const InfoHolder = ({
   icon,
 }) => {
   return (
-    <div className={`infoContainer   ${className}`}>
-      <div className="imageContainer">
+    <div className={`flex items-center    ${className}`}>
+      <div className={`w-1/2 ${textSecStyle} mr-16`}>
+        <img src={icon} alt="establishIcon" className="w-20 -mt-10" />
+        <h2>{title}</h2>
+        <p className="w mt-3 pb-5  ">{body}</p>
+      </div>
+      <div className="w-1/2 relative">
         <div className={`image ${imageSecStyle}`}>
           <Img fluid={img} alt="establishing" />
         </div>
-      </div>
-      <div className={`text ${textSecStyle}`}>
-        <img src={icon} alt="establishIcon" className="icon" />
-        <h2>{title}</h2>
-        <p className="w mt-3 pb-5  ">{body}</p>
       </div>
     </div>
   );
@@ -55,43 +57,25 @@ const Info = () => {
     }
   `);
 
-  const words = {
-    ar: {
-      esta: {
-        title: ":تأسيسنا",
-        body: `
-            تأسست عام 2016 باسم مؤسسة الشام
-            التعليميـــة وعملـــت فـــي الداخل الســـوري،
-            حتـــى عـــام 2019 حيـــث تـــم  ترخيـــص مكتب  
-            başaklar Umut للمنظمة في تركيا باسم `,
-      },
-      vision: {
-        title: ":رؤيتنا المستقبلية",
-        body: `
-          نهـــدف إلى تأمين ســـبل العيش الكريمة
-للمحتاجين فـــي المجتمع، وبناء جيل واع،
-ونشـــر الثقافـــة والتنميـــة بيـــن الأفـــراد؛
-لتحقيـــق أكبـــر نجـــاح والوصول إلـــى الإبداع
-   والرقـــي في كافـــة مجالات الحيـــاة ( ثقافياً, طبياً, تنموياً, إغاثياً)
-          `,
-      },
-    },
-  };
+  const [lang] = useLang();
   return (
     <div className="bg-AppDark">
-      <div className="container py-10">
+      <div className=" py-5">
+        <div className="flex justify-center py-8">
+          <AppTitle>{text[lang].name}</AppTitle>
+        </div>
         <InfoHolder
           img={estImg.image.asset.fluid}
-          title={words["ar"].esta.title}
-          body={words["ar"].esta.body}
+          title={text[lang].about.foundingTitle}
+          body={text[lang].about.foundingBody}
           icon={establishIcon}
         />
         <div className="pt-5"></div>
         <InfoHolder
           img={visionImg.image.asset.fluid}
-          title={words["ar"].vision.title}
-          body={words["ar"].vision.body}
-          className="secoundStyle"
+          title={text[lang].about.visionTitle}
+          body={text[lang].about.visionBody}
+          className=" flex-row-reverse"
           textSecStyle="textSecStyle"
           imageSecStyle="imageSecStyle"
           icon={vision}
@@ -103,9 +87,6 @@ const Info = () => {
 
 export default Info;
 const InfoStyle = styled.section`
-  padding-bottom: 6rem;
-  background: var(--dark);
-
   .name {
     width: 25rem;
     margin: 0 auto;
