@@ -1,42 +1,21 @@
-import React from "react"
-import styled from "styled-components"
-import emailLogo from "../../assets/icons/contact/email.svg"
-import address from "../../assets/icons/contact/address.svg"
-import phoneIcon from "../../assets/icons/contact/phone.svg"
-import useForm from "../useForm"
-const Form = ({ lang = "ar" }) => {
-  const words = {
-    ar: {
-      emailText: "الإيميل",
-      name: "الإسم",
-      phone: "الهاتف",
-      country: "البلد",
-      text: "نص الرسالة",
-      buttonText: "ارسال",
-    },
-    en: {
-      emailText: "Email",
-      name: "Name",
-      phone: "Phone",
-      country: "Country",
-    },
-    tr: {
-      emailText: "email",
-      name: "isim",
-      phone: "Telefon",
-      country: "Ülke",
-    },
-  }
-
-  const { emailText, name, phone, country, text, buttonText } = words[lang]
+import React from "react";
+import styled from "styled-components";
+import emailLogo from "../../assets/icons/contact/email.svg";
+import address from "../../assets/icons/contact/address.svg";
+import phoneIcon from "../../assets/icons/contact/phone.svg";
+import useForm from "../useForm";
+import { useLang } from "../../context/lang-context";
+const Form = () => {
+  const { emailText, name, phone, country, text, buttonText } = words[lang];
   const { values, updateValue } = useForm({
     personName: "",
     email: "",
     phoneNumber: "",
     formCountry: "",
     messageBody: "",
-  })
-  const { personName, email, phoneNumber, formCountry, messageBody } = values
+  });
+  const { personName, email, phoneNumber, formCountry, messageBody } = values;
+  const [lang] = useLang();
   return (
     <FormStyle>
       <div className="messageInput">
@@ -114,15 +93,17 @@ const Form = ({ lang = "ar" }) => {
         </div>
         <h3 className="mt-5">:العنوان</h3>
         <div className="info">
-          <div className="w" style={{}}>سوريا ريف حلب الشمالي أعزاز</div>
+          <div className="w" style={{}}>
+            سوريا ريف حلب الشمالي أعزاز
+          </div>
           <img src={address} alt="email" className="icon" />
         </div>
       </div>
     </FormStyle>
-  )
-}
+  );
+};
 
-export default Form
+export default Form;
 
 const FormStyle = styled.section`
   margin-top: -8rem;
@@ -195,7 +176,7 @@ const FormStyle = styled.section`
       border-radius: 25px;
     }
   }
-`
+`;
 
 const FormMessageStyle = styled.form`
   .langFormStyle {
@@ -250,4 +231,4 @@ const FormMessageStyle = styled.form`
       padding: 10px 10px;
     }
   }
-`
+`;

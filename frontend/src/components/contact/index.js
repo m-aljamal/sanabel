@@ -1,14 +1,20 @@
-import React from "react"
-import styled from "styled-components"
-import { useStaticQuery, graphql } from "gatsby"
-import HeroBackground from "../HeroBackground"
-import Form from "./Form"
+import React from "react";
+import { useStaticQuery, graphql } from "gatsby";
+import HeroBackground from "../HeroBackground";
+import Form from "./Form";
+import { useLang } from "../../context/lang-context";
 const Index = () => {
   const { backImg } = useStaticQuery(graphql`
     {
       backImg: sanityPagesHero(title: { eq: "contact" }) {
-        # name
-        # body
+        imageTitle {
+          ar
+          en
+        }
+        ImageBody {
+          ar
+          en
+        }
         image {
           asset {
             fluid(maxWidth: 2000) {
@@ -18,13 +24,15 @@ const Index = () => {
         }
       }
     }
-  `)
+  `);
+  const [lang] = useLang();
   return (
-    <ContactStyle>
+    <div>
       <HeroBackground
         image={backImg.image.asset.fluid}
-        title={backImg.name}
-        text={backImg.body}
+        title={backImg.imageTitle[lang]}
+        text={backImg.ImageBody[lang]}
+        textStyle="mb-8"
       />
       <div className="container">
         <iframe
@@ -35,19 +43,12 @@ const Index = () => {
           allowFullScreen=""
           aria-hidden="false"
           title="sanabelAlamal location"
-          className="location"
+          className="rounded-lg -mt-8"
         ></iframe>
         <Form />
       </div>
-    </ContactStyle>
-  )
-}
+    </div>
+  );
+};
 
-export default Index
-const ContactStyle = styled.section`
-  .location {
-    margin-top: -4rem;
-    position: relative;
-    border-radius: 25px;
-  }
-`
+export default Index;

@@ -34,7 +34,7 @@ export const text = {
       videoTitle: "العمل",
       videoText: "معاَ نحو النجاح",
       videoText2: "لبناء مستقبل أفضل",
-      foundingTitle: "تأسيسنا",
+      foundingTitle: "تأسيسنا:",
       foundingBody: `تأسست عام 2016 باسم مؤسسة الشام
       التعليميـــة وعملـــت فـــي الداخل الســـوري،
       حتـــى عـــام 2019 حيـــث تـــم  ترخيـــص مكتب  
@@ -47,6 +47,22 @@ export const text = {
 لتحقيـــق أكبـــر نجـــاح والوصول إلـــى الإبداع
 والرقـــي في كافـــة مجالات الحيـــاة ( ثقافياً, طبياً, تنموياً, إغاثياً)
       `,
+    },
+    project: {
+      target: "الهدف",
+      remains: "المتبقي",
+      seeMore: "مشاهدة المزيد",
+      title: "قطاعات عملنا",
+    },
+    contact: {
+      emailText: "البريد الالكتروني",
+      name: "الاسم",
+      phone: "الهاتف",
+      message: "الرسالة",
+      send: "ارسال",
+      success: "تم الارسال بنجاح",
+      error: "حدث خطأ أثناء الارسال",
+      country: "البلد",
     },
   },
   en: {
@@ -68,5 +84,49 @@ for the needy in society, and to build a conscious generation,
 spreading culture and development among individuals;
 To achieve greater success and access to creativity and advancement in all areas of life (culturally, medically, developmentally, relief)`,
     },
+    project: {
+      target: "Target",
+      remains: "Remains",
+      seeMore: "See More",
+      title: "Our Projects",
+    },
+    contact: {
+      emailText: "Email",
+      name: "Name",
+      phone: "Phone",
+      message: "Message",
+      send: "Send",
+      success: "The message has been sent successfully",
+      error: "An error occurred while sending the message",
+      country: "Country",
+    },
   },
 };
+
+export const projectsTypes = [
+  {
+    ar: "الكل",
+    value: "all",
+    en: "All",
+  },
+  {
+    ar: "المشاريع الإغاثية",
+    value: "relief",
+    en: "Relief",
+  },
+  {
+    ar: "المشاريع التعليمية",
+    value: "education",
+    en: "Education",
+  },
+  {
+    ar: "المشاريع الطبية",
+    value: "medical",
+    en: "Medical",
+  },
+  {
+    ar: "المشاريع الخدمية",
+    value: "service",
+    en: "Service",
+  },
+];

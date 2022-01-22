@@ -1,56 +1,39 @@
-import React, { useState } from "react"
-import styled from "styled-components"
-
+import React, { useState } from "react";
+import styled from "styled-components";
+import { projectsTypes } from "../../data/text";
+import { useLang } from "../../context/lang-context";
 const SerchProjects = ({ setProjects, setToAll, allProjects }) => {
-  const [index, setIndex] = useState(0)
-  const words = {
-    ar: {
-      types: [
-        {
-          display: "الكل",
-          value: "all",
-        },
-        {
-          display: "المشاريع الإغاثية",
-          value: "relief",
-        },
-        {
-          display: "المشاريع التعليمية",
-          value: "education",
-        },
-        {
-          display: "المشاريع الطبية",
-          value: "medical",
-        },
-        {
-          display: "المشاريع الخدمية",
-          value: "service",
-        },
-      ],
-    },
-  }
+  const [index, setIndex] = useState(0);
+
   const showProjects = (type, i) => {
-    setIndex(i)
+    setIndex(i);
     if (type === "all") {
-      setToAll()
-    } else setProjects(allProjects.filter(proj => proj.projectType === type))
-  }
+      setToAll();
+    } else setProjects(allProjects.filter((proj) => proj.projectType === type));
+  };
+
+  const [lang] = useLang();
   return (
-    <SearchStyle className="container">
-      {words["ar"].types.map((type, i) => (
+    <div className=" grid lg:grid-cols-5  space-y-2 lg:space-y-0 text-center mt-8  container  ">
+      {projectsTypes.map((type, i) => (
         <p
           key={i}
-          className={index === i ? "active" : undefined}
+          className={`
+            ${
+              index === i
+                ? "bg-gradient-to-r from-AppGreen to-AppBack rounded-lg    "
+                : undefined
+            } cursor-pointer py-2 text-lg`}
           onClick={() => showProjects(type.value, i)}
         >
-          {type.display}
+          {type[lang]}
         </p>
       ))}
-    </SearchStyle>
-  )
-}
+    </div>
+  );
+};
 
-export default SerchProjects
+export default SerchProjects;
 
 const SearchStyle = styled.div`
   .active {
@@ -75,4 +58,4 @@ const SearchStyle = styled.div`
       color: var(--green);
     }
   }
-`
+`;
