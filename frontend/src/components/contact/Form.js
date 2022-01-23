@@ -5,8 +5,10 @@ import address from "../../assets/icons/contact/address.svg";
 import phoneIcon from "../../assets/icons/contact/phone.svg";
 import useForm from "../useForm";
 import { useLang } from "../../context/lang-context";
+import { footerText, text } from "../../data/text";
 const Form = () => {
-  const { emailText, name, phone, country, text, buttonText } = words[lang];
+  const [lang] = useLang();
+
   const { values, updateValue } = useForm({
     personName: "",
     email: "",
@@ -15,133 +17,147 @@ const Form = () => {
     messageBody: "",
   });
   const { personName, email, phoneNumber, formCountry, messageBody } = values;
-  const [lang] = useLang();
+  const { emailText, name, phone, message, send, country } = text[lang].contact;
+
   return (
-    <FormStyle>
-      <div className="messageInput">
-        <h3>راسلنا</h3>
-        <FormMessageStyle className={` ${lang !== "ar" && "langFormStyle"}`}>
-          <div className="inputsContainer">
-            <div>
-              <input
-                type="email"
-                name="email"
-                value={email}
-                onChange={updateValue}
-                placeholder={emailText}
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                name="personName"
-                value={personName}
-                placeholder={name}
-                onChange={updateValue}
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                name="phoneNumber"
-                value={phoneNumber}
-                placeholder={phone}
-                onChange={updateValue}
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                name="formCountry"
-                value={formCountry}
-                placeholder={country}
-                onChange={updateValue}
-              />
-            </div>
-          </div>
-          <div>
-            <textarea
-              placeholder={text}
-              value={messageBody}
-              name="messageBody"
+    <div
+      className="-mt-10  relative md:flex justify-center shadow-xl  mb-10 w-[90%] mx-auto rounded-xl "
+      style={{
+        background: `linear-gradient(
+      24deg,
+      rgba(146, 207, 88, 1) 0%,
+      rgba(255, 255, 255, 1) 41%
+    )`,
+      }}
+    >
+      <ContactInfo />
+      <div className="p-2  md:w-3/5">
+        <h3 className="text-AppDark font-bold text-xl mb-3">
+          {text[lang].contact.title}
+        </h3>
+        <div>
+          <div className="grid grid-cols-2 gap-4   ">
+            <Input
+              type="email"
+              name="email"
+              value={email}
+              placeholder={emailText}
+              onChange={updateValue}
+            />
+            <Input
+              type="text"
+              name="personName"
+              value={personName}
+              placeholder={name}
+              onChange={updateValue}
+            />
+
+            <Input
+              type="text"
+              name="phoneNumber"
+              value={phoneNumber}
+              placeholder={phone}
+              onChange={updateValue}
+            />
+            <Input
+              type="text"
+              name="formCountry"
+              value={formCountry}
+              placeholder={country}
               onChange={updateValue}
             />
           </div>
-          <div className="button">
-            <button>{buttonText}</button>
-          </div>
-        </FormMessageStyle>
-      </div>
-      <div className="infoSection ">
-        <h3>:البريد الإلكتروني</h3>
-        <div className="info">
           <div>
-            <a href="mailto:info@sanabelamal.org">info@sanabelamal.org</a>
-            <a href="mailto:sanabellamal@hotmail.com">
-              sanabellamal@hotmail.com
-            </a>
+            <textarea
+              placeholder={message}
+              value={messageBody}
+              name="messageBody"
+              onChange={updateValue}
+              className="w-full p-2 ring-1 ring-AppGreen mt-4 rounded-md"
+            />
           </div>
-          <img src={emailLogo} alt="email" className="icon" />
-        </div>
-        <h3 className="mt-5 ">:الهاتف</h3>
-        <div className="info">
-          <div>
-            <a href="tel:  +352 681 557 130 "> +352 681 557 130</a>
-            <a href="tel: +90 552 578 67 54">+90 552 578 67 54</a>
-          </div>
-          <img src={phoneIcon} alt="email" className="icon" />
-        </div>
-        <h3 className="mt-5">:العنوان</h3>
-        <div className="info">
-          <div className="w" style={{}}>
-            سوريا ريف حلب الشمالي أعزاز
-          </div>
-          <img src={address} alt="email" className="icon" />
+
+          <button className="bg-AppDark p-2 text-white rounded-md ">
+            {send}
+          </button>
         </div>
       </div>
-    </FormStyle>
+    </div>
   );
 };
 
 export default Form;
 
-const FormStyle = styled.section`
-  margin-top: -8rem;
-  margin-bottom: -2rem;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  .messageInput {
-    width: 60%;
-    background: linear-gradient(
-      24deg,
-      rgba(146, 207, 88, 1) 0%,
-      rgba(255, 255, 255, 1) 41%
-    );
-    border-top-left-radius: 25px;
-    border-bottom-left-radius: 25px;
-    box-shadow: var(--shadow);
-    padding: 2.5rem;
-    h3 {
-      color: var(--dark);
-      font-weight: bold;
-    }
-  }
-  .infoSection {
-    box-shadow: var(--shadow);
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
-    padding: 2.5rem;
-    background: linear-gradient(
+const Input = ({ name, value, placeholder, onChange, type }) => {
+  return (
+    <div>
+      <input
+        type={type}
+        name={name}
+        value={value}
+        placeholder={placeholder}
+        onChange={onChange}
+        className="  w-full p-2 ring-1 ring-AppGreen rounded-md outline-none "
+      />
+    </div>
+  );
+};
+
+const ContactInfo = () => {
+  const [lang] = useLang();
+  const { emailText, phone, addressText } = text[lang].contact;
+  return (
+    <div
+      className={`shadow-lg ${
+        lang === "ar"
+          ? "rounded-tr-xl md:rounded-br-xl  rounded-tl-xl md:rounded-tl-none   "
+          : "rounded-tl-xl rounded-bl-xl"
+      }  p-2   text-white  md:w-2/5  `}
+      style={{
+        background: `linear-gradient(
       24deg,
       rgba(146, 207, 88, 1) 0%,
       rgba(42, 60, 53, 1) 57%
-    );
-    width: 30%;
-  }
-  .icon {
-    width: 50px;
-  }
+    )`,
+      }}
+    >
+      <SingleInfo title={emailText} logo={emailLogo}>
+        <>
+          <a href={`mailto:${footerText.email}`}>{footerText.email}</a>
+          <a href={`mailto:${footerText.email2}`}>{footerText.email2}</a>
+        </>
+      </SingleInfo>
+      <SingleInfo title={phone} logo={phoneIcon}>
+        <>
+          <a href={`tel:${footerText.phone} `} style={{ direction: "ltr" }}>
+            {footerText.phone}
+          </a>
+          <a href={`tel:${footerText.phone2}`} style={{ direction: "ltr" }}>
+            {footerText.phone2}
+          </a>
+        </>
+      </SingleInfo>
+
+      <SingleInfo title={addressText} logo={address}>
+        <p>{footerText[lang].address}</p>
+      </SingleInfo>
+    </div>
+  );
+};
+
+const SingleInfo = ({ title, logo, children }) => {
+  return (
+    <div>
+      <h3 className="text-lg font-bold">{title}</h3>
+      <div className="flex gap-2 my-3">
+        <img src={logo} alt="email" className="w-10" />
+        <div className="flex flex-col">{children}</div>
+      </div>
+    </div>
+  );
+};
+
+const FormStyle = styled.section`
   .info {
     display: flex;
     align-items: center;

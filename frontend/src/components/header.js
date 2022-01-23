@@ -1,19 +1,19 @@
-import { Link } from "gatsby"
-import React from "react"
-import logo from "../assets/icons/logo.png"
-import navOpen from "../assets/icons/iconfinder.svg"
+import { Link } from "gatsby";
+import React from "react";
+import logo from "../assets/icons/logo.png";
+import navOpen from "../assets/icons/iconfinder.svg";
 
-import Drawer from "react-modern-drawer"
-import "react-modern-drawer/dist/index.css"
-import { links } from "../data/links"
-import LanguageSelector from "./LanguageSelector"
-import { useLang } from "../context/lang-context"
+import Drawer from "react-modern-drawer";
+import "react-modern-drawer/dist/index.css";
+import { links } from "../data/links";
+import LanguageSelector from "./LanguageSelector";
+import { useLang } from "../context/lang-context";
 
 const Header = ({ location }) => {
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [isOpen, setIsOpen] = React.useState(false);
   const toggleDrawer = () => {
-    setIsOpen(prevState => !prevState)
-  }
+    setIsOpen((prevState) => !prevState);
+  };
 
   return (
     <header className="container flex justify-center   ">
@@ -39,15 +39,15 @@ const Header = ({ location }) => {
         <NavLinks location={location} mobile />
       </Drawer>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
 
 const NavLinks = ({ location, mobile }) => {
-  const fullScreenStyle = "text-white gap-8 text-lg md:flex  hidden"
-  const mobileStyle = "text-center space-y-5 mt-8 text-lg md:hidden"
-  const [lang] = useLang()
+  const fullScreenStyle = "text-white gap-8 text-lg md:flex  hidden";
+  const mobileStyle = "text-center space-y-5 mt-8 text-lg md:hidden";
+  const [lang] = useLang();
 
   return (
     <ul className={mobile ? mobileStyle : fullScreenStyle}>
@@ -61,7 +61,7 @@ const NavLinks = ({ location, mobile }) => {
           </Link>
         </li>
       ))}
-      <LanguageSelector location={location} />
+      <LanguageSelector location={location} mobile={mobile} />
     </ul>
-  )
-}
+  );
+};

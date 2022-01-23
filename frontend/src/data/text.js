@@ -5,16 +5,19 @@ export const footerText = {
     phone: "الهاتف:",
     email: "البريد الالكتروني:",
     addressTitle: "العنوان:",
-    address: "سوريا _ريف حلب الشمالي _ أعزاز",
+    address: "سوريا - ريف حلب الشمالي -أعزاز",
     socialText: "تابعونا على مواقع التواصل الإجتماعي",
     allRight: "جميع الحقوق محفوظة",
   },
   en: {
     contact: "Contact us",
     call: "Call us",
-    phone: "Phone",
-    email: "Email",
+    phone: "Phone:",
+    email: "Email:",
     allRight: "All rights reserved",
+    addressTitle: "Address:",
+    address: "Syria - Rif El-Halab - Azzaz",
+    socialText: "Follow us on social media",
   },
   phone: "+90 552 578 67 54",
   phone2: "+352 681 557 130",
@@ -25,7 +28,7 @@ export const footerText = {
 export const text = {
   ar: {
     name: "سنابل الأمل",
-    project: "مشاريع مميزة",
+    specialproject: "مشاريع مميزة",
     news: "اَخر الاخبار",
     partners: "شركاؤنا في العمل الإنساني",
     partnersText:
@@ -55,6 +58,7 @@ export const text = {
       title: "قطاعات عملنا",
     },
     contact: {
+      title: "راسلنا",
       emailText: "البريد الالكتروني",
       name: "الاسم",
       phone: "الهاتف",
@@ -63,11 +67,12 @@ export const text = {
       success: "تم الارسال بنجاح",
       error: "حدث خطأ أثناء الارسال",
       country: "البلد",
+      addressText: "العنوان",
     },
   },
   en: {
     name: "Sanabel Al-Amal",
-    project: "Special Projects",
+    specialproject: "Special Projects",
     news: "Latest News",
     partners: "Our partners in humanitarian work",
     partnersText:
@@ -91,6 +96,7 @@ To achieve greater success and access to creativity and advancement in all areas
       title: "Our Projects",
     },
     contact: {
+      title: "Contact us",
       emailText: "Email",
       name: "Name",
       phone: "Phone",
@@ -99,6 +105,7 @@ To achieve greater success and access to creativity and advancement in all areas
       success: "The message has been sent successfully",
       error: "An error occurred while sending the message",
       country: "Country",
+      addressText: "Address",
     },
   },
 };

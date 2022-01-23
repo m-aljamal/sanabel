@@ -53,7 +53,7 @@ const SpecialProjects = () => {
     <div className="bg-AppDark  ">
       <div className="container py-10">
         <div className="mb-8">
-          <AppTitle>{text[lang].project}</AppTitle>
+          <AppTitle>{text[lang].specialproject}</AppTitle>
         </div>
 
         <Slider {...settings}>

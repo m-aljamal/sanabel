@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { navigate } from "gatsby";
 import { useLang } from "../context/lang-context";
-const LanguageSelector = ({ location }) => {
+const LanguageSelector = ({ location, mobile }) => {
   const [lang, setLang] = useLang();
 
   useEffect(() => {
@@ -39,6 +39,7 @@ const LanguageSelector = ({ location }) => {
       <SelectLang
         change={lang === "ar" ? languges[0].change : languges[1].change}
         name={lang === "ar" ? languges[0].name : languges[1].name}
+        mobile={mobile}
       />
     </div>
   );
@@ -46,9 +47,12 @@ const LanguageSelector = ({ location }) => {
 
 export default LanguageSelector;
 
-const SelectLang = ({ change, name }) => {
+const SelectLang = ({ change, name, mobile }) => {
   return (
-    <p onClick={change} style={{ cursor: "pointer", color: "white" }}>
+    <p
+      onClick={change}
+      style={{ cursor: "pointer", color: mobile ? "black" : "white" }}
+    >
       {name}
     </p>
   );
